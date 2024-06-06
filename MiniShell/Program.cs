@@ -11,7 +11,6 @@
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -326,7 +325,7 @@ namespace MiniShell {
             }
 
             int port = stringToPortWithDefault(portDescription, this.port);
-            string minishellPath = System.Reflection.Assembly.GetEntryAssembly().Location;
+            string minishellPath = Process.GetCurrentProcess().MainModule.FileName;
 
             Process shell = new Process();
             shell.StartInfo = new ProcessStartInfo(minishellPath, $"{hostDescription} {port}");

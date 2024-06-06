@@ -6,6 +6,9 @@
 	<!--
 	<TargetFrameworks>net46</TargetFrameworks>
     -->
+	<!--
+	<TargetFrameworks>net8</TargetFrameworks>
+    -->
 	<ImplicitUsings>enable</ImplicitUsings>
 	<LangVersion>10.0</LangVersion>
   </PropertyGroup>
