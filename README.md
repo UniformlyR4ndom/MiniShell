@@ -4,7 +4,7 @@ Among them are:
 + file transfer
 + automatic reconnection attempt on connection loss
 + easy duplication of established shells
-+ easy choice between cmd and powershell command interpreter
++ easy choice/switch between cmd and powershell command interpreter
 + features can be chosen at build time (can be stripped down to a minimal shell without extra features)
 
 
@@ -12,11 +12,11 @@ Among them are:
 + using Visual Studio 2022
 
 ## .NET executable
-+ preferably leave target framework at net46 since this should work most Windows 10 and newer system out of the box
++ preferably set target framework at `net46` since this should work for most Windows 10 and newer system out of the box
 
-### Build relese version
+### Build release version (recommended)
 + smaller than debug
-+ debug output disabled (doesn't matter much for regula use)
++ debug output disabled (doesn't matter much for regular use)
 ```
 MSBuild.exe .\MiniShell.sln /p:Configuration=Release
 ```
@@ -26,11 +26,12 @@ MSBuild.exe .\MiniShell.sln /p:Configuration=Debug
 ```
 
 ## Native executable
-+ should work on older Windows systems
++ should work on Windows systems without .NET runtime (pre Windows 10), but binaries are much larger than .NET binaries
 + uses the ahead-of-time compilation feature of .NET 7+ (https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net7%2Cwindows)
-+ binaries are much larger than .NET binaries, but should work on Windows systems without .NET runtime
++ set target framework to `net8` (in `MiniShell.csproj`) before building
 
-### Build release version
+
+### Build release version (recommended)
 + recommended since it saves about half in size
 ```
 dotnet publish -r win-x64 -c Release -f net8 -p:PublishAot=true --self-contained
